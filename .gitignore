@@ -1,0 +1,67 @@
+## Ignore Visual Studio temporary files, build output, and user-specific files
+# See https://github.com/github/gitignore/blob/main/VisualStudio.gitignore for reference
+
+# Build folders
+bin/
+obj/
+
+# Visual Studio files
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+
+# NuGet
+# NuGet packages
+*.nupkg
+# The packages folder can be ignored because of PackageReference
+packages/
+
+# Build results
+*.dll
+*.exe
+*.app
+*.log
+*.pdb
+
+# Test results
+TestResults/
+
+# Visual Studio profiler
+*.psess
+*.vsp
+
+# DotCover
+*.dotCover
+
+# NCrunch
+*.ncrunch*
+
+# Coverage and artifacts
+coverage/
+artifacts/
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# MACOS
+.DS_Store
+
+# Database files
+*.db
+
+# JetBrains Rider caches
+.idea/**/workspace.xml
+
+# Rider plugin configs
+/.idea/*
+
+# Ignore publish outputs
+publish/
+
