@@ -1,4 +1,4 @@
-﻿using ConsoleApp1.models;
+using ConsoleApp1.models;
 
 namespace ConsoleApp1
 {
@@ -34,6 +34,25 @@ namespace ConsoleApp1
 				};
 
 				/// <summary>
+				/// Cambia el color del texto en la consola según el código proporcionado.
+				/// </summary>
+				/// <remarks>
+				/// <param name="key"></param>
+				/// <example>
+				/// <code>
+				/// SetColor('R'); // Cambia el color del texto a rojo
+				/// </code>
+				/// </example>
+				/// </remarks>
+				public static void SetColor(char key)
+				{
+						if (Color.ContainsKey(key.ToString().ToUpper()))
+						{
+								Color[key.ToString()]?.Invoke();
+						}
+				}
+
+				/// <summary>
 				/// Imprime la barra de estado de dos entidades en la consola.
 				/// </summary>
 				/// <param name="p">La entidad jugador.</param>
@@ -49,31 +68,34 @@ namespace ConsoleApp1
 				{
 						int sizeWindow = Console.WindowWidth;
 
-						Color["V"]?.Invoke();
+						SetColor('V');
 						Console.WriteLine(new string('-', sizeWindow));
 						Console.Write("\n");
 						Console.ResetColor();
 
 						//player
 						Console.Write("{");
-						Color["B"]?.Invoke(); Console.Write($"{p._Nombre?.Trim()} ");
-						Color["V"]?.Invoke(); Console.Write($"[HP:{p._Hp}]");
-						Color["R"]?.Invoke(); Console.Write($"[ATK:{p._Atk}]");
+						SetColor('B'); Console.Write(p.Nombre?.Trim()); Console.Write(" ");
+						SetColor('V'); Console.Write($"[HP:{p.Hp}]");
+						SetColor('R'); Console.Write($"[ATK:{p.Atk}]");
 						Console.ResetColor();
 						Console.Write("}");
 
-						Console.ResetColor();
 						//enemigo
-						Console.SetCursorPosition(sizeWindow / 2, Console.CursorTop);
+						int cursorTop = Console.CursorTop;
+						int enemyPos = sizeWindow / 2;
+						if (enemyPos < 0) enemyPos = 0;
+						if (enemyPos >= sizeWindow) enemyPos = Math.Max(0, sizeWindow - 1);
+						Console.SetCursorPosition(enemyPos, cursorTop);
 						Console.Write("{");
-						Color["B"]?.Invoke(); Console.Write($"{e._Nombre?.Trim()} ");
-						Color["V"]?.Invoke(); Console.Write($"[HP:{e._Hp}]");
-						Color["R"]?.Invoke(); Console.Write($"[ATK:{e._Atk}]");
+						SetColor('B'); Console.Write(e.Nombre?.Trim()); Console.Write(" ");
+						SetColor('V'); Console.Write($"[HP:{e.Hp}]");
+						SetColor('R'); Console.Write($"[ATK:{e.Atk}]");
 						Console.ResetColor();
 						Console.Write("}");
 
 						Console.WriteLine("\n");
-						Color["V"]?.Invoke();
+						SetColor('V');
 						Console.WriteLine(new string('-', sizeWindow));
 						Console.ResetColor();
 
@@ -84,5 +106,7 @@ namespace ConsoleApp1
 						//Console.WriteLine(centeredText);
 						return;
 				}
+		 
+		
 		}
 }

@@ -1,6 +1,6 @@
-﻿using ConsoleApp1.models;
+using ConsoleApp1.models;
 using ConsoleApp1;
-using System.Text.Json.Serialization;
+
 
 internal class Program
 {
@@ -14,18 +14,15 @@ internal class Program
 				var name = "default";// Console.ReadLine();
 				var jugador = new Player(name ?? "desconociado", "N/A", 10, 100, 10, 2);
 				var enemigo = new Enemy("Enemigo", "Ra", 11, 100);
-
 				TLI.PrintBarStatus(jugador, enemigo);
-
-
 				do
 				{
 						var danio = jugador.Atacar();
-						Console.WriteLine($"{jugador._Nombre} : Ataca[atk:{danio}]");
+						Console.WriteLine($"{jugador.Nombre} : Ataca[atk:{danio}]");
 						enemigo.RecibirDano(danio);
 
 						danio = enemigo.Atacar();
-						Console.WriteLine($"{enemigo._Nombre} : Ataca[atk:{danio}]\n");
+						Console.WriteLine($"{enemigo.Nombre} : Ataca[atk:{danio}]\n");
 						jugador.RecibirDano(danio);
 						
 						Thread.Sleep(4000);
@@ -56,6 +53,6 @@ internal class Program
 		private static Func<Player, Enemy, bool> continuar =
 		(Player p, Enemy e) =>
 		{
-				return p._Hp > 0 && e._Hp > 0;
+				return p.Hp > 0 && e.Hp > 0;
 		};
 }
